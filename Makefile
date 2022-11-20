@@ -1,8 +1,11 @@
 ROOT_DIR?=$(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 PREDICTORS_DIR=$(ROOT_DIR)/predictors
 
+include .env
+# Please define GCP_PROJECT in .env file
+# echo 'GCP_PROJECT=<PLEASE WRITE YOUR GCP PROJECT NAME HERE>' > .env
+
 GCP_REGION?=us-central1
-GCP_PROJECT?=<PLEASE WRITE YOUR GCP PROJECT NAME HERE>
 GCP_SERVICE_ACCOUNT?=numerai-compute@$(GCP_PROJECT).iam.gserviceaccount.com
 
 CLOUD_RUN_CPU?=2
