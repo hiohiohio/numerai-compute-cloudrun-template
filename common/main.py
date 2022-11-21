@@ -22,7 +22,7 @@ def numerai_compute_webhook(
         default=...,
         title="Model ID",
         min_length=36,
-        max_length=46,
+        max_length=36,
         regex="^[^-]{8}-[^-]{4}-[^-]{4}-[^-]{4}-[^-]{12}$",
     ),
     request_body: NumeraiComputeWebhookRequest = Body(),
