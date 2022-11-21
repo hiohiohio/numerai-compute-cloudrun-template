@@ -12,7 +12,7 @@ CLOUD_RUN_CPU?=2
 CLOUD_RUN_MEMORY?=2Gi
 
 REPOSITORY?=$(GCP_REGION)-docker.pkg.dev/$(GCP_PROJECT)/numerai-compute
-TAG?=$(shell TZ=UTC date '+%Y%m%d')
+TAG?=$(shell date '+%Y%m%d')
 
 run-%: build-%
 	docker run --rm -it \
@@ -30,7 +30,7 @@ build-%:
 	docker tag $(REPOSITORY)/${@:build-%=%}:$(TAG) $(REPOSITORY)/${@:build-%=%}:local
 
 push-%:
-	docker push $(REPOSITORY)/${@:build-%=%}:$(TAG)
+	docker push $(REPOSITORY)/${@:push-%=%}:$(TAG)
 
 deploy-%:
 	gcloud beta run deploy numerai-compute-$(subst _,-,${@:build-%=%}) \
@@ -48,3 +48,4 @@ deploy-%:
 		--project=$(GCP_PROJECT)
 
 release-%: build-% push-% deploy-%
+	true
