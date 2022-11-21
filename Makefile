@@ -33,7 +33,7 @@ push-%:
 	docker push $(REPOSITORY)/${@:push-%=%}:$(TAG)
 
 deploy-%:
-	gcloud beta run deploy numerai-compute-$(subst _,-,${@:build-%=%}) \
+	gcloud beta run deploy numerai-compute-$(subst _,-,${@:deploy-%=%}) \
 		--execution-environment=gen2 \
 		--image=$(REPOSITORY)/${@:deploy-%=%}:$(TAG) \
 		--allow-unauthenticated \
