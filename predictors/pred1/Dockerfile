@@ -13,9 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY ${PREDICTOR_DIR}/requirements.txt /tmp/requirements.txt
 
-RUN python3 -m pip install --no-cache-dir --extra-index-url https://pypi.fury.io/arrow-nightlies/ \
-    --prefer-binary --pre pyarrow \
-    && python3 -m pip install --no-cache-dir -r /tmp/requirements.txt
+RUN python3 -m pip install --no-cache-dir -r /tmp/requirements.txt
 
 COPY common/* ${APPDIR}/
 COPY ${PREDICTOR_DIR}/resources ${APPDIR}/resources
